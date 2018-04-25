@@ -1,0 +1,29 @@
+/*CSS reset settings here*/
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+#wrapper{
+    width: 900px;
+    margin: 20px auto;
+}
+
+#logout{
+    text-align: right;
+}
+#wrapper table{
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+#wrapper table td{
+    border: solid black 2pt;
+    padding: 5px;
+}
+#wrapper table th{
+    border: solid black 3pt;
+    padding: 5px;
+}
+#wrapper h1{
+    margin-bottom: 20px;
+}

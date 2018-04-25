@@ -1,0 +1,29 @@
+<%= stylesheet_link_tag "stats.css" %>
+
+<div id="wrapper">
+
+    <div id='logout'>
+        <a href="/songs">Dashboard</a> 
+        <a href="/sessions/destroy" data-method='delete'>Logout</a>
+    </div>
+
+    <h1><%=@user.first_name%> <%=@user.last_name%>'s Playlist</h1>
+
+        <div id='t1'>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Title</th>
+                    <th>Times Added</th>
+                </tr>
+                <%  @records.each do |record| %>
+                <tr>    
+                    <td><%=record.song.artist%></td>
+                    <td><%=record.song.title%></td>
+                    <td><%=record.count%></td>
+                </tr>
+                <% end %>
+            </table>
+        </div>
+
+</div>

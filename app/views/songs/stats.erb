@@ -1,0 +1,28 @@
+<%= stylesheet_link_tag "stats.css" %>
+
+<div id="wrapper">
+
+    <div id='logout'>
+        <a href="/songs">Dashboard</a> 
+        <a href="/sessions/destroy" data-method='delete'>Logout</a>
+    </div>
+
+    <h1>Others who added <%=@song.artist%> - <%=@song.title%></h1>
+
+        <div id='t1'>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Times Added</th>
+                </tr>
+                <% others = PlayList.where(song_id: @song.id) %>
+                <%  others.each do |record| %>
+                <tr>    
+                    <td><a href='/users/<%=record.user.id%>'><%=record.user.first_name%> <%=record.user.last_name%></a></td>
+                    <td><%=record.count%></td>
+                </tr>
+                <% end %>
+            </table>
+        </div>
+
+</div>

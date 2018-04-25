@@ -1,0 +1,75 @@
+<%= stylesheet_link_tag "main.css" %>
+
+<div id='wrapper'>
+    
+    <h1>Welcome</h1>
+    
+    <% if flash[:errors] %>
+        <% flash[:errors].each do |error| %>
+            <p id='notice'><%=error%></p>
+        <% end %>
+    <% end %>
+
+    <% if flash[:notice] %>
+        <% flash[:notice].each do |notice| %>
+            <p id='notice'><%=notice%></p>
+        <% end %>
+    <% end %>
+
+    <div id='register'>
+        <form  action = "/users/create" method = "post">
+            <input type = 'hidden' name = "authenticity_token" value = "<%=form_authenticity_token%>">
+            <h3>Register</h3>
+            
+            <table>
+                <tr>
+                    <td> <label>First Name:</label> </td>
+                    <td><input type = "text" name="first_name" id = "first_name"></td>
+                </tr>
+                    
+                <tr>
+                    <td><label>Last Name:</label></td>
+                    <td><input type = "text" name="last_name" id = "last_name"></td>
+                </tr>
+
+                <tr>
+                    <td><label>Email:</label></td>
+                    <td><input type="text" name="email" id = "email"></td>
+                </tr>
+
+                <tr>
+                    <td><label>Password:</label></td>
+                    <td><input type="password" name="password" id = "password"></td>
+                </tr>
+
+                <tr> 
+                    <td colspan="2"><p>Password should be at least 8 characters</p></td>
+                </tr>
+
+            </table>
+            <input type = "submit" value = "Register">
+        </form>
+    </div>
+
+    <div id='login'>
+        <form action = "sessions/create" method = "post">
+            <input type = 'hidden' name = "authenticity_token" value = "<%=form_authenticity_token%>">
+            <h3>Login</h3>        
+        
+            <table>
+                <tr>
+                    <td><label>Email:</label></td>
+                    <td><input type="text" name="email" id = "email"></td>
+                </tr>
+
+                <tr>
+                    <td><label>Password:</label></td>
+                    <td><input type="password" name="password" id = "password"></td>
+                </tr>
+            </table>
+        
+            <input type = "submit" value="Log In">
+        </form>
+    </div>
+
+</div>

@@ -1,0 +1,72 @@
+<%= stylesheet_link_tag "dashboard.css" %>
+
+<div id="wrapper">
+
+    <div id='logout'>
+        <a href="/sessions/destroy" data-method='delete'>Logout</a>
+    </div>
+
+    <h1>Hello, <%=@user.first_name%> <%=@user.last_name%></h1>
+
+
+        <% if @all_songs.length > 0 %>
+        <div id='t1'>
+            <h3>All the songs in our hub:</h3>
+            <table>
+                <tr>
+                    <th>Artist</th>
+                    <th>Title</th>
+                    <th>No. of Times Song Has Been Added</th>
+                    <th>Add to Playlist</th>
+                </tr>
+                <%  @all_songs.each do |song| %>
+                <tr>
+                        
+                    <td><%=song.artist%></td>
+                    <td><a href='/songs/<%=song.id%>'><%=song.title%></a></td>
+                    <% occurances = PlayList.where(song_id: song.id) %>
+                     <% total = 0 %>
+                    <% occurances.each do |occurance| %>
+                        <% total += occurance.count %>
+                    <% end %>
+                    <td><%=total%></td>
+                    <td>
+                        <form action="/users/add/<%=song.id%>" method="post">
+                            <input type="hidden" name="_method" value="patch">
+                            <input type = 'hidden' name = "authenticity_token" value = "<%=form_authenticity_token%>">
+                            <input type="submit" value="Add" id='button'>
+                        </form>
+                    </td>
+                </tr>
+                <% end %>
+            </table>
+        </div>
+        <% end %>
+
+
+        <% if flash[:errors] %>
+            <% flash[:errors].each do |error| %>
+                <p id='notice'><%=error%></p>
+            <% end %>
+        <% end %>
+
+        <div id='newSong'>
+            <p>Add a Song</p>
+            <form action = "/songs/create" method = "post">
+                <input type='hidden' name="authenticity_token" value="<%=form_authenticity_token%>">
+                <table>
+                    <tr>
+                        <td><label>Title:</label></td>
+                        <td><input type="text" name="title" id="title"></td>
+                    </tr>
+    
+                    <tr>
+                        <td><label>Artist:</label></td>
+                        <td><input type="text" name="artist" id="artist"></td>
+                    </tr>
+                </table>            
+                <input type="submit" value="Add Song" id='button'>
+            </form>
+        </div>
+
+</div>

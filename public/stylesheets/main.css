@@ -1,0 +1,36 @@
+/*CSS reset settings here*/
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+#wrapper{
+    width: 900px;
+    margin: 20px auto;
+    /* background-color: coral;  */
+}
+
+#notice{
+    text-align: center;
+    font-style: bold;
+}
+#wrapper h1{
+    text-align: center;
+}
+
+#wrapper div{
+    display: inline-block;
+    margin: 10px 20px;
+    border: solid black 2pt;
+    border-radius: 4px;
+    padding: 5px; 
+}
+
+#register{
+    margin: 0px auto;
+}
+
+#login{
+    vertical-align: top;
+    margin: 0px auto;
+}
