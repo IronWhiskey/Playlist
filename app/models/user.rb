@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   has_secure_password
-  has_one :playlist
+  has_one :playlist, dependent: :destroy
   has_many :songs, through: :playlist
   EMAIL_REGEX = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]+)\z/i
 
